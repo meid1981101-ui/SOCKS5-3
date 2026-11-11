@@ -1,4 +1,4 @@
-name: Update SOCKS5 Proxy List   
+name: Update SOCKS5 Proxy List
 
 on:
   schedule:
@@ -27,5 +27,6 @@ jobs:
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git add all.txt
-          git diff --quiet && git diff --staged --quiet || (git commit -m "Update SOCKS5 proxy list" && git push)
+          date -u > timestamp.txt
+          git add all.txt timestamp.txt
+          git diff --quiet && git diff --staged --quiet || (git commit -m "Update SOCKS5 proxy list and keepalive timestamp" && git push)
